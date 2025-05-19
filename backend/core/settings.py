@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import firebase_admin
 from firebase_admin import credentials
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,9 +130,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-cred = credentials.Certificate(os.path.join(BASE_DIR, 'serviceAccountKey.json'))
-firebase_admin.initialize_app(cred)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+firebase_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON')
+
+if firebase_json:
+    cred = credentials.Certificate(json.loads(firebase_json))
+    firebase_admin.initialize_app(cred)
+else:
+    cred_path = os.path.join(BASE_DIR, 'serviceAccountKey.json')
+    if os.path.exists(cred_path):
+        cred = credentials.Certificate(cred_path)
+        firebase_admin.initialize_app(cred)
 
 # PAGINATION SETTINGS
 REST_FRAMEWORK = {
