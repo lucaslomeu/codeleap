@@ -126,10 +126,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "https://codeleap-git-master-lucaslomeus-projects.vercel.app",
-    "https://codeleap-rho.vercel.app"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://codeleap-rho.vercel.app",
+#     "https://codeleap-git-master-lucaslomeus-projects.vercel.app",
+# ]
+
+CORS_ALLOWED_ORIGINS = True
 
 firebase_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON')
 
