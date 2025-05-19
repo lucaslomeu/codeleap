@@ -132,6 +132,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://codeleap-rho.vercel.app",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
+
 firebase_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON')
 
 if firebase_json:
