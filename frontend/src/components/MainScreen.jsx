@@ -15,7 +15,7 @@ const MainScreen = ({ username }) => {
         </div>
       </header>
       <main className="main-container">
-        <PostForm username={username} />
+        <PostForm />
         <PostList username={username} />
       </main>
     </div>

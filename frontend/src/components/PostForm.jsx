@@ -1,11 +1,14 @@
 import { useState, useRef } from "react";
 import { usePosts } from "../hooks/usePosts";
+import { useFirebaseAuth } from "../hooks/useFirebaseAuth";
 
-export default function PostForm({ username }) {
+export default function PostForm() {
   const { createPost } = usePosts();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const textareaRef = useRef(null);
+
+  const { user } = useFirebaseAuth();
 
   const handleContentChange = (e) => {
     setContent(e.target.value);
@@ -20,7 +23,12 @@ export default function PostForm({ username }) {
     e.preventDefault();
     if (!title || !content) return;
     createPost.mutate(
-      { username, title, content },
+      {
+        user_uid: user.uid,
+        username: user.displayName || user.email,
+        title,
+        content,
+      },
       {
         onSuccess: () => {
           setTitle("");
