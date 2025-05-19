@@ -38,3 +38,5 @@ Thumbs.db
 *.py[cod]
 __pycache__/
 .Python
+
+backend/serviceAccountKey.json
