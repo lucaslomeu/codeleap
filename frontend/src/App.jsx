@@ -1,16 +1,22 @@
-import { useState } from "react";
 import "./styles/main.css";
-import SignupModal from "./components/SignupModal";
 import MainScreen from "./components/MainScreen";
+import LoginModal from "./components/LoginModal";
+import { useFirebaseAuth } from "./hooks/useFirebaseAuth";
 
 function App() {
-  const [username, setUsername] = useState(null);
+  const { user, loading } = useFirebaseAuth();
 
-  if (!username) {
-    return <SignupModal onSubmit={setUsername} />;
+  if (loading) return <p>Loading...</p>;
+
+  if (!user) {
+    return <LoginModal />;
   }
 
-  return <MainScreen username={username} />;
+  return (
+    <div>
+      <MainScreen username={user.displayName || user.email} />
+    </div>
+  );
 }
 
 export default App;
