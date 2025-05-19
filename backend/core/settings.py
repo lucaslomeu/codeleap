@@ -133,3 +133,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 cred = credentials.Certificate(os.path.join(BASE_DIR, 'serviceAccountKey.json'))
 firebase_admin.initialize_app(cred)
+
+# PAGINATION SETTINGS
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+}

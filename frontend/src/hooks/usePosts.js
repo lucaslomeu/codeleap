@@ -3,16 +3,17 @@ import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export function usePosts() {
+export function usePosts(page = 1) {
     const queryClient = useQueryClient()
 
     // Fetch posts from the API
     const postsQuery = useQuery({
-        queryKey: ['posts'],
+        queryKey: ['posts', page],
         queryFn: async () => {
-            const { data } = await axios.get(API_URL)
-            return Array.isArray(data) ? data : data.results || []
-        }
+            const { data } = await axios.get(`${API_URL}?page=${page}`)
+            return data
+        },
+        keepPreviousData: true
     })
 
     // Create a new post

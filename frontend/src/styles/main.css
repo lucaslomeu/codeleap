@@ -167,6 +167,7 @@ button:disabled {
 
 button:hover:not(:disabled) {
   background: #5775b5;
+  color: #fff;
 }
 
 .icon-btn {
@@ -312,6 +313,54 @@ button:hover:not(:disabled) {
 .login-error {
   color: red;
   margin-top: 1rem;
+}
+
+/* PAGINATION */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.pagination-controls button {
+  background: #fff;
+  color: #555;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pagination-btn {
+  background: #fff;
+  color: #7695ec;
+  border: 1.5px solid #7695ec;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.pagination-btn.active {
+  color: #7695ec;
+  font-weight: bold;
+  border: 1.5px solid #7695ec;
+  cursor: default;
+}
+
+.pagination-btn:disabled {
+  background: #7695ec;
+  color: #fff;
+  border: 1.5px solid #7695ec;
+  font-weight: normal;
+  cursor: not-allowed;
 }
 
 /* RESPONSIVE */
