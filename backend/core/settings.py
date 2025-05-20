@@ -29,9 +29,7 @@ SECRET_KEY = 'django-insecure-%4c7r9!trv@(dyu=zwciosvdwp@$9%$bv##ji86ar-p3*9pl!2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'codeleap-production.up.railway.app',
-]
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
 
 # Application definition
 
